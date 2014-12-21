@@ -30,7 +30,7 @@ public class Toggle extends JavaPlugin {
 
 		if (command.getName().equalsIgnoreCase("opToggle")) {
 			if (sender instanceof Player) {
-				if (sender.hasPermission("opme.admin")) {
+				if (sender.hasPermission("optoggle.toggle")) {
 					if (sender.isOp()) {
 						sender.setOp(false);
 						sender.sendMessage(ChatColor.GREEN
@@ -42,14 +42,14 @@ public class Toggle extends JavaPlugin {
 						sender.sendMessage(ChatColor.GREEN + "You are now op");
 					}
 				} else {
-					sender.sendMessage(ChatColor.RED + "You cant do this...");
+					sender.sendMessage(ChatColor.RED + "You don't have optoggle.toggle");
 				}
 			} else {
 				sender.sendMessage("Only players can use this command");
 			}
 		}
 
-		return super.onCommand(sender, command, label, args);
+		return false;
 	}
 
 }

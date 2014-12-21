@@ -1,0 +1,11 @@
+name: OpToggle
+author: michaelmvv
+version: 1
+description: Toggle op
+main: opToggle.Toggle
+commands:
+  opToggle:
+    description: Toggles op status
+    permission: optoggle.toggle
+    permission-message: You don't have optoggle.toggle
+  
