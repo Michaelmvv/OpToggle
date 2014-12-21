@@ -1,4 +1,4 @@
-package michaelmvv.OpToggle;
+package opToggle;
 
 import java.util.logging.Logger;
 
