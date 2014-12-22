@@ -14,15 +14,14 @@ public class Toggle extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		// make logger thing
 		log = Bukkit.getLogger();
 		log.info("Mvv OpToggle starting");
-		super.onEnable();
 	}
 
 	@Override
 	public void onDisable() {
 		log.info("Mvv opToggle shutting down");
-		super.onDisable();
 	}
 
 	public boolean onCommand(CommandSender sender, Command command,
