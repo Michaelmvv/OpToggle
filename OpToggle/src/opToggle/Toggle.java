@@ -1,5 +1,9 @@
 package opToggle;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -11,16 +15,37 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Toggle extends JavaPlugin {
 	Logger log;
-	String ver= "1";
+	String ver = "1";
+	boolean hasUpdate;
 
 	@Override
 	public void onEnable() {
 		// make logger thing
 		log = Bukkit.getLogger();
 		log.info("Mvv OpToggle starting");
-		
-		
-		
+
+		ArrayList<String> information = new ArrayList<String>();
+		try {
+			URL remoteFile = new URL(
+					"https://raw.githubusercontent.com/Michaelmvv/OpToggle/master/Update/update.txt");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					remoteFile.openStream()));
+			for (int i = 0; i < 2; i++) {
+				information.add(reader.readLine());
+			}
+		} catch (Exception e) {
+			log.info("Could not get update info, lets assume that there is no update");
+		}
+
+		if (information.get(0).equalsIgnoreCase(ver)) {
+			log.info("No update found");
+		} else {
+			log.info(ChatColor.RED + "OpToggle (Ver. " + ver
+					+ " ) is not in sync with github (Ver. "
+					+ information.get(0) + ")");
+			log.info("Get the update at: "+ChatColor.GREEN+"https://github.com/Michaelmvv/OpToggle");
+		}
+
 	}
 
 	@Override
