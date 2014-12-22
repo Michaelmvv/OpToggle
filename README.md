@@ -15,3 +15,5 @@ If a player has it they can toggle their op status
 
 Download
 ========
+
+[Click to download] (https://github.com/Michaelmvv/OpToggle/blob/master/DL/OpToggle%20v1.jar?raw=true)
