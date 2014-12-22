@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Toggle extends JavaPlugin {
 	Logger log;
-	String ver= "1.0.0";
+	String ver= "1";
 
 	@Override
 	public void onEnable() {
