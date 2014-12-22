@@ -1,7 +1,7 @@
 name: OpToggle
 author: michaelmvv
 version: 1
-description: Toggle op
+description: Toggle op stauts, Could be usefull on prison servers.
 main: opToggle.Toggle
 commands:
   opToggle:
