@@ -11,12 +11,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Toggle extends JavaPlugin {
 	Logger log;
+	String ver= "1.0.0";
 
 	@Override
 	public void onEnable() {
 		// make logger thing
 		log = Bukkit.getLogger();
 		log.info("Mvv OpToggle starting");
+		
+		
+		
 	}
 
 	@Override
