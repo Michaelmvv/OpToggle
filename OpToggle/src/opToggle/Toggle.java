@@ -14,11 +14,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Toggle extends JavaPlugin implements Listener {
 	Logger log;
-	String ver = "1";
+	String ver;
 	boolean hasUpdate = false;
 
 	@Override
@@ -29,8 +30,89 @@ public class Toggle extends JavaPlugin implements Listener {
 
 		// register the player join event thingy
 		getServer().getPluginManager().registerEvents(this, this);
+		
+		//Get version from plugin.yml
+		PluginDescriptionFile pdf = this.getDescription();
+		ver = pdf.getVersion();
 
 		// check if there are updates
+		UpdateCheck();
+	}
+
+	@Override
+	public void onDisable() {
+		log.info("Mvv opToggle shutting down");
+	}
+
+	// when player logs in
+	@EventHandler
+	public void onLogin(PlayerLoginEvent event) {
+		// get player from event
+		Player player = event.getPlayer();
+		// check if player is op
+		if (player.isOp()) {
+			// check for update
+			if (hasUpdate) {
+				// tell OP player that there is an update
+				player.sendMessage(ChatColor.RED + "OpToggle Has an update");
+				player.sendMessage(ChatColor.RED + "Get it at:");
+				player.sendMessage(ChatColor.GREEN
+						+ "https://github.com/Michaelmvv/OpToggle");
+
+			}
+		}
+
+	}
+
+	public boolean onCommand(CommandSender sender, Command command,
+			String label, String[] args) {
+		// See if the command is opToggle
+		if (command.getName().equalsIgnoreCase("ToggleOp")) {
+			// see if a player sent it
+			if (sender instanceof Player) {
+				// check perms
+				if (sender.hasPermission("optoggle.toggle")) {
+					// check if player is Op
+					if (sender.isOp()) {
+						// if they are Op, de-op them
+						sender.setOp(false);
+						sender.sendMessage(ChatColor.GREEN
+								+ "You are nolonger op");
+						log.info(sender.getName() + " is nolonger Op");
+					} else {
+						// if player is not op, give them op
+						sender.setOp(true);
+						log.info(sender.getName() + " is now Op");
+						sender.sendMessage(ChatColor.GREEN + "You are now op");
+					}
+				} else {
+					// tell player they don't have perms
+					sender.sendMessage(ChatColor.RED + "You dont get OP");
+				}
+			} else {
+				// tell non-player that they cant use the command
+				sender.sendMessage("Only players can use this command");
+			}
+		}
+		if (command.getName().equalsIgnoreCase("OpToggleUpdateCheck")) {
+			if (sender instanceof Player) {
+				if (sender.hasPermission("optoggle.update")) {
+					UpdateCheck();
+					if (hasUpdate) {
+						sender.sendMessage(ChatColor.GREEN
+								+ "There is an update!");
+						sender.sendMessage(ChatColor.GREEN + "Get it at: "
+								+ ChatColor.RED
+								+ "https://github.com/Michaelmvv/OpToggle");
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public void UpdateCheck() {
 		ArrayList<String> information = new ArrayList<String>();
 		try {
 			URL remoteFile = new URL(
@@ -55,66 +137,6 @@ public class Toggle extends JavaPlugin implements Listener {
 			hasUpdate = true;
 		}
 
-	}
-
-	@Override
-	public void onDisable() {
-		log.info("Mvv opToggle shutting down");
-	}
-
-	//when player logs in
-	@EventHandler
-	public void onLogin(PlayerLoginEvent event) {
-		//get player from event
-		Player player = event.getPlayer();
-		//check if player is op
-		if (player.isOp()) {
-			//check for update 
-			if (hasUpdate) {
-				//tell OP player that there is an update
-				player.sendMessage(ChatColor.RED + "OpToggle Has an update");
-				player.sendMessage(ChatColor.RED + "Get it at:");
-				player.sendMessage(ChatColor.GREEN
-						+ "https://github.com/Michaelmvv/OpToggle");
-
-			}
-		}
-
-	}
-
-	public boolean onCommand(CommandSender sender, Command command,
-			String label, String[] args) {
-		// See if the command is opToggle
-		if (command.getName().equalsIgnoreCase("opToggle")) {
-			// see if a player sent it
-			if (sender instanceof Player) {
-				// check perms
-				if (sender.hasPermission("optoggle.toggle")) {
-					// check if player is Op
-					if (sender.isOp()) {
-						// if they are Op, de-op them
-						sender.setOp(false);
-						sender.sendMessage(ChatColor.GREEN
-								+ "You are nolonger op");
-						log.info(sender.getName() + " is nolonger Op");
-					} else {
-						// if player is not op, give them op
-						sender.setOp(true);
-						log.info(sender.getName() + " is now Op");
-						sender.sendMessage(ChatColor.GREEN + "You are now op");
-					}
-				} else {
-					// tell player they don't have perms
-					sender.sendMessage(ChatColor.RED
-							+ "You don't have optoggle.toggle");
-				}
-			} else {
-				// tell non-player that they cant use the command
-				sender.sendMessage("Only players can use this command");
-			}
-		}
-
-		return false;
 	}
 
 }

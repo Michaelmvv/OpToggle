@@ -1,11 +1,15 @@
 name: OpToggle
 author: michaelmvv
 version: 1
-description: Toggle op stauts, Could be usefull on prison servers.
+description: Toggle Op status, has uses on prison servers.
 main: opToggle.Toggle
 commands:
-  opToggle:
-    description: Toggles op status
+  ToggleOP:
+    description: Toggles Op status
     permission: optoggle.toggle
-    permission-message: You don't have optoggle.toggle
+    permission-message: No Permission
+  OpToggleUpdateCheck:
+    description: Check for OpToggle Updates
+    permission: optoggle.update
+    permission-message: No Permission
   
