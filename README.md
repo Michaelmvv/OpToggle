@@ -18,4 +18,5 @@ optoggle.update
 Download
 ========
 
-[Click to download] (https://github.com/Michaelmvv/OpToggle/blob/master/DL/OpToggle%20v1.jar?raw=true)
+[Version 1](https://github.com/Michaelmvv/OpToggle/blob/master/DL/OpToggle%20v1.jar?raw=true)
+[Version 2](https://github.com/Michaelmvv/OpToggle/blob/master/DL/OpToggle%20v2.jar?raw=true)
