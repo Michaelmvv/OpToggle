@@ -28,7 +28,7 @@ public class Toggle extends JavaPlugin implements Listener {
 		log = Bukkit.getLogger();
 		log.info("Mvv OpToggle starting");
 
-		// register the player join event thingy
+		// register the player join event thing
 		getServer().getPluginManager().registerEvents(this, this);
 
 		// Get version from plugin.yml
