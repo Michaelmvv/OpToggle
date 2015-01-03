@@ -30,8 +30,8 @@ public class Toggle extends JavaPlugin implements Listener {
 
 		// register the player join event thingy
 		getServer().getPluginManager().registerEvents(this, this);
-		
-		//Get version from plugin.yml
+
+		// Get version from plugin.yml
 		PluginDescriptionFile pdf = this.getDescription();
 		ver = pdf.getVersion();
 
@@ -42,6 +42,9 @@ public class Toggle extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable() {
 		log.info("Mvv opToggle shutting down");
+		if (hasUpdate) {
+			log.info("There is an update: https://github.com/Michaelmvv/OpToggle");
+		}
 	}
 
 	// when player logs in

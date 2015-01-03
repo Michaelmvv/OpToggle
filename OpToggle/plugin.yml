@@ -1,6 +1,6 @@
 name: OpToggle
 author: michaelmvv
-version: 1
+version: 2
 description: Toggle Op status, has uses on prison servers.
 main: opToggle.Toggle
 commands:

@@ -9,9 +9,11 @@ Could be usefull in prison severs where Op's/Admins/Staff dont want to be able t
 Perms
 =====
 
-The only permision node is: optoggle.toggle
+optoggle.toggle
+	If a player has this they can toggle their op status
 
-If a player has it they can toggle their op status
+optoggle.update
+	this allows a player to check for updates
 
 Download
 ========
